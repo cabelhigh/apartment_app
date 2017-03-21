@@ -2,6 +2,7 @@
 <!--This listed apartment will appear in Googlemaps  -->
 <div id="apartment_map" data-apartment-id="<%=@apartment.id%>">Google Map should be here...</div>
 
+<%= link_to image_tag(@apartment.image.url(:large)), @apartment.image.url %>
 <p>
   <strong>Name:</strong>
   <%= @apartment.name %>

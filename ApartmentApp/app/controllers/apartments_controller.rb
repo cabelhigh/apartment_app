@@ -63,7 +63,7 @@ class ApartmentsController < ApplicationController
 
   def map_location
     @apartment = Apartment.find(params[:apartment_id])
-    @address = "#{@apartment.street1} #{@apartment.street2}, #{@apartment.city}, #{@apartment.state} #{@apartment.postalcode}"
+    @address = "#{@apartment.street1} #{@apartment.street2}, #{@apartment.city}, #{@apartment.state} #{@apartment.postalcode}" #This line is redundant since you already set address in the model
     @hash = Gmaps4rails.build_markers(@apartment) do |apartment, marker|
       marker.lat(apartment.latitude)
       marker.lng(apartment.longitude)
@@ -80,6 +80,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:name, :phone_number, :hours_to_contact, :street1, :street2, :city, :postalcode, :state, :country)
+      params.require(:apartment).permit(:name, :phone_number, :hours_to_contact, :street1, :street2, :city, :postalcode, :state, :country, :image)
     end
 end
