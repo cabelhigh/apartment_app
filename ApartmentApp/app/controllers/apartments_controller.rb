@@ -4,7 +4,7 @@ class ApartmentsController < ApplicationController
   # GET /apartments
   # GET /apartments.json
   def index
-    @apartments =  Apartment.search({street1: params[:search], description: params[:search]}, false)
+    @apartments =  Apartment.search(params[:search])
     @apartments = Apartment.all if params[:search].nil? || params[:search].strip.empty?
   end
 

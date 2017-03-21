@@ -44,4 +44,24 @@ RSpec.feature "TextacularSearches", type: :feature do
       end
     end
   end
+
+  context "Creating a search by description with Textacular" do
+    Steps "We can search an apartment by anything" do
+      Given "We are on the index page and create a new apartment" do
+        visit '/'
+        click_link 'Create Apartment'
+      end
+      When "We create a new apartment with a phone number" do
+        fill_in "apartment_phone_number", with: "858-555-1818"
+        attach_file('apartment[image]', '/Users/learn/Downloads/illustration.jpg')
+        click_button "Create Apartment"
+        visit '/'
+      end
+      Then "We can search for it" do
+        fill_in "search", with: "858"
+        click_button "Search"
+        expect(page).to have_content("858")
+      end
+    end
+  end
 end
