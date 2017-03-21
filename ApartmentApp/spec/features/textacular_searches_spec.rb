@@ -9,7 +9,7 @@ RSpec.feature "TextacularSearches", type: :feature do
     Steps "We can search an apartment by address" do
       Given "we are on the index page and we create a new apartment" do
         visit '/' #basically go to the root url, i.e. localhost:3000
-        click_link 'List Apartment' #click the link on the page that has the words 'List Apartment' in it
+        click_link 'Create Apartment' #click the link on the page that has the words 'List Apartment' in it
         #on clicking 'List Apartment', we got to the apartments/new page
       end
       When "We create a new apartment with an address at '123 Lane'" do
@@ -22,6 +22,25 @@ RSpec.feature "TextacularSearches", type: :feature do
         fill_in "search", with: "Lane" #fill in the field named "search" with "Lane"
         click_button "Search" #click the button, which calls the 'index' method in our ApartmentsController
         expect(page).to have_content("Lane") #expect the page to display the apartment we just made, since we just searched for it
+      end
+    end
+  end
+  context "Creating a search by description with Textacular" do
+    Steps "We can search an apartment by description" do
+      Given "We are on the index page and perform a search by description" do
+        visit '/'
+        click_link 'Create Apartment'
+      end
+      When "We create a new apartment with a description" do
+        fill_in "apartment_description", with: "My great description"
+        attach_file('apartment[image]', '/Users/learn/Downloads/illustration.jpg')
+        click_button "Create Apartment"
+        visit '/'
+      end
+      Then "We can search for it" do
+        fill_in "search", with: "great"
+        click_button "Search"
+        expect(page).to have_content("great")
       end
     end
   end

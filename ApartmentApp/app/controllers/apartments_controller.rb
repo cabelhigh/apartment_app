@@ -4,7 +4,7 @@ class ApartmentsController < ApplicationController
   # GET /apartments
   # GET /apartments.json
   def index
-    @apartments =  Apartment.search(street1: params[:search])
+    @apartments =  Apartment.search({street1: params[:search], description: params[:search]}, false)
     @apartments = Apartment.all if params[:search].nil? || params[:search].strip.empty?
   end
 
@@ -81,6 +81,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:name, :phone_number, :hours_to_contact, :street1, :street2, :city, :postalcode, :state, :country, :image)
+      params.require(:apartment).permit(:name, :phone_number, :hours_to_contact, :street1, :street2, :city, :postalcode, :state, :country, :image, :description)
     end
 end
