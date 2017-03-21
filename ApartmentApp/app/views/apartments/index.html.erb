@@ -6,6 +6,12 @@
 
 <%= link_to 'List Apartment', new_apartment_path %>
 <%= link_to 'View Apartments', new_apartment_path %>
+<%= form_tag(apartments_path, :method => "get") do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
 
 <br>
 <br>
@@ -15,10 +21,11 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Image</th>
       <th>Phone number</th>
       <th>Hours to contact</th>
-      <th>Street1</th>
-      <th>Street2</th>
+      <th>Address</th>
+      <th>Unit #</th>
       <th>City</th>
       <th>Postalcode</th>
       <th>State</th>
@@ -31,6 +38,7 @@
     <% @apartments.each do |apartment| %>
       <tr>
         <td><%= apartment.name %></td>
+        <td><%= link_to image_tag(apartment.image.url(:med)), apartment_path(apartment.id) %></td>
         <td><%= apartment.phone_number %></td>
         <td><%= apartment.hours_to_contact %></td>
         <td><%= apartment.street1 %></td>
