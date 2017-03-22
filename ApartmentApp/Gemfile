@@ -34,11 +34,14 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+#These are the gems we've added so far
 gem 'underscore-rails'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'paperclip'
 gem 'textacular'
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,5 +1,6 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user! #make sure to ask for username/password before doing anything. If authentication fails, redirect to root. "user" is just the name of our model; if we changed it, it would be "authenticate_<model name>!"
 
   # GET /apartments
   # GET /apartments.json
